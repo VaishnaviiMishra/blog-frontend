@@ -1,11 +1,7 @@
-// src/components/BlogForm.js
 import React, { useState } from 'react';
 import axios from 'axios';
-console.log(newPost);
 
-
-
-const BlogForm = () => {
+const BlogForm = ({ onPostAdded }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [author, setAuthor] = useState('');
@@ -13,7 +9,7 @@ const BlogForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const newPost = { title, content, author };
-    
+        
         axios.post('http://localhost/INTERNSHIP_PROJECT/api/create.php', newPost, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -29,7 +25,6 @@ const BlogForm = () => {
         })
         .catch(error => console.error('Error creating post:', error));
     };
-    
 
     return (
         <div className="form-container">
@@ -52,5 +47,5 @@ const BlogForm = () => {
     );
 };
 
-
 export default BlogForm;
+

@@ -1,30 +1,16 @@
-// src/components/BlogList.js
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 
-const BlogList = () => {
-    const [posts, setPosts] = useState([]);
-
-    useEffect(() => {
-        axios.get('http://localhost/INTERNSHIP_PROJECT/api/read.php')
-            .then(response => {
-                setPosts(response.data);
-            })
-            .catch(error => console.error('Error fetching data:', error));
-    }, []);
-
+const BlogList = ({ posts }) => {
     return (
         <div>
-            <h1>Blog Posts</h1>
-            <ul>
-                {posts.map(post => (
-                    <li key={post.id}>
-                        <h2>{post.title}</h2>
-                        <p>{post.content}</p>
-                        <p><em>By {post.author}</em></p>
-                    </li>
-                ))}
-            </ul>
+            <h2>Blog Posts</h2>
+            {posts.map((post, index) => (
+                <div key={index}>
+                    <h3>{post.title}</h3>
+                    <p>{post.content}</p>
+                    <p><em>{post.author}</em></p>
+                </div>
+            ))}
         </div>
     );
 };
